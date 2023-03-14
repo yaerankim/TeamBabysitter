@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TeamBabySitter</string>
+
+
+    <!-- Bottom Navigation View -->
+    <string name="home">home</string>
+    <string name="map">MAP</string>
+    <string name="community">Community</string>
+    <string name="diary">Diary</string>
+    <string name="mypage">Mypage</string>
 </resources>
