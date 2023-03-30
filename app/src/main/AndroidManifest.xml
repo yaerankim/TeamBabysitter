@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseEmailAccount"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="8er4rel34a" />
         <activity android:name=".LoginActivity" android:exported="true">
 
             <intent-filter>

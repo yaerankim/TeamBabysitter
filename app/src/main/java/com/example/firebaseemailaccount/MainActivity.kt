@@ -1,8 +1,10 @@
 package com.example.firebaseemailaccount
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.naver.maps.map.MapView
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.OnMapReadyCallback
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,4 +14,8 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+
 }
+
