@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class MapActivity extends Fragment {
+public class MyPageActivity extends Fragment {
     private View view;
-    private String TAG = "MapFragment";
+    private String TAG = "MyPageFragment";
 
     @Nullable
     @Override
@@ -23,3 +23,4 @@ public class MapActivity extends Fragment {
         return view;
     }
 }
+

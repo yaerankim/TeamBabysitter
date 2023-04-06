@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class MapActivity extends Fragment {
+public class HomeActivity extends Fragment {
     private View view;
-    private String TAG = "MapFragment";
+    private String TAG = "HomeFragment";
 
     @Nullable
     @Override
