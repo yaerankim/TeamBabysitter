@@ -1,6 +1,5 @@
 package com.example.firebaseemailaccount;
 
-
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -12,7 +11,6 @@ import com.google.android.material.navigation.NavigationBarView;
 public class PageActivity extends AppCompatActivity
 {
     BottomNavigationView buttonview;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,7 +27,9 @@ public class PageActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new HomeActivity()).commit();
                     break;
                 case R.id.map:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MapActivity()).commit();
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MapFragment()).commit();
+                    MapFragment mapFragment = new MapFragment();
+                    getSupportFragmentManager().beginTransaction().add(R.id.main_frame, mapFragment).commit();
                     break;
                 case R.id.community:
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new CommunityActivity()).commit();
@@ -45,4 +45,3 @@ public class PageActivity extends AppCompatActivity
         });
     }
 }
-
