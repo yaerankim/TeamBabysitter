@@ -41,6 +41,9 @@
         <activity
             android:name=".PageActivity"
             android:exported="true"/>
+        <activity
+            android:name=".MyPageActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

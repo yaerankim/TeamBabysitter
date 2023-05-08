@@ -137,7 +137,7 @@ public class DetailActivity extends AppCompatActivity {
             String board_seq = params[0];
 
 // 호출할 php 파일 경로
-            String server_url = "http://15.164.252.136/load_board_detail.php";
+            String server_url = "http://0.0.0.0:8000/community/create"; // django 서버 주소로 수정
 
 
             URL url;
@@ -337,7 +337,7 @@ public class DetailActivity extends AppCompatActivity {
             String content = params[1];
             String board_seq = params[2];
 
-            String server_url = "http://15.164.252.136/reg_comment.php";
+            String server_url = "http://0.0.0.0:8000/comment/create/1";
 
 
             URL url;
