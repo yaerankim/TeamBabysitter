@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,7 +32,9 @@ public class MyPageActivity extends AppCompatActivity { // Fragment
 //    }
 
     Call<Data_model> call;
-    TextView textView;
+    // TextView textView;
+    EditText title_text, content_text;
+    Button register_button;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,29 +42,30 @@ public class MyPageActivity extends AppCompatActivity { // Fragment
         setContentView(R.layout.retrofit_test);
 
 
-        textView = findViewById(R.id.textView2);
+        title_text = findViewById(R.id.title_text);
+        content_text = findViewById(R.id.content_text);
+        register_button = findViewById(R.id.register_button);
 
-        call = Retrofit_client.getApiService().test_api_get(1);
-        call.enqueue(new Callback<Data_model>() {
-            //콜백 받는 부분
-            @Override
-            public void onResponse(Call<Data_model> call, Response<Data_model> response) {
-                Data_model result = response.body();
-                String str;
-                str = result.getId() + "\n" +
-                        result.getTitle() + "\n" +
-                        result.getContent() + "\n" +
-                        result.getViewCount();
-                textView.setText(str);
-            }
+        // title_text.setText("");
+        // content_text.setText("");
 
-            @Override
-            public void onFailure(Call<Data_model> call, Throwable t) {
+        register_button.setOnClickListener(view -> {
+            Data_model post = new Data_model(title_text.getText().toString(), content_text.getText().toString());
+            call = Retrofit_client.getApiService().community_post(post);
 
-            }
+            call.enqueue(new Callback<Data_model>() {
+                //콜백 받는 부분
+                @Override
+                public void onResponse(Call<Data_model> call, Response<Data_model> response) {
+                    Data_model result = response.body();
+                }
+
+                @Override
+                public void onFailure(Call<Data_model> call, Throwable t) {
+
+                }
+            });
         });
-
-
     }
 }
 

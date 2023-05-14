@@ -20,6 +20,10 @@ public class Data_model {
     @Expose
     private Integer view_count;
 
+    public Data_model(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 
     public Integer getId(){
         return id;
