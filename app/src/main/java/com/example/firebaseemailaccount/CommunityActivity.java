@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,9 +24,15 @@ import retrofit2.Response;
 public class CommunityActivity extends Fragment {
     private View view;
     private String TAG = "CommunityFragment";
+    // public Integer post_id;
     Call<Community_model> call;
     EditText title_et, content_et;
-    Button reg_button;
+    TextView title_txt, content_txt, created_at_txt;
+    Button reg_button, comment_button, list_button;
+
+    public static CommunityActivity newInstance() {
+        return new CommunityActivity();
+    }
 
     @Nullable
     @Override
@@ -44,6 +51,7 @@ public class CommunityActivity extends Fragment {
         reg_button.setOnClickListener(view -> {
             Community_model post = new Community_model(title_et.getText().toString(), content_et.getText().toString());
             call = Retrofit_client.getApiService().community_post(post);
+            // post_id = post.getId(); // post 직후 해당 데이터의 id값을 가져올 방법이 없음
             call.enqueue(new Callback<Community_model>() {
                 //콜백 받는 부분
                 @Override
@@ -54,6 +62,11 @@ public class CommunityActivity extends Fragment {
                     }else{
                         Toast.makeText(getContext(), "Request failed", Toast.LENGTH_LONG).show();
                     }
+
+                    // 게시글 업로드 직후 등록한 특정 게시물 보여주는 화면으로 전환(post 직후 id값 받아올 방법이 없어 실패)
+                    // view = inflater.inflate(R.layout.activity_community_view, container, false);
+                    // 게시글 업로드 직후 전체 게시글 list view로 화면 전환
+                    ((PageActivity)getActivity()).replaceFragment(ListActivity.newInstance());
                 }
                 @Override
                 public void onFailure(Call<Community_model> call, Throwable t) {

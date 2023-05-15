@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -32,7 +35,9 @@ public class PageActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction().add(R.id.main_frame, mapFragment).commit();
                     break;
                 case R.id.community:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new CommunityActivity()).commit();
+                    // getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new CommunityActivity()).commit();
+                    // 게시글 전체 목록 먼저 띄우도록 수정ㅛ
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new ListActivity()).commit();
                     break;
                 case R.id.diary:
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new DiaryActivity()).commit();
@@ -43,5 +48,12 @@ public class PageActivity extends AppCompatActivity
             }
             return true;
         });
+    }
+    // 화면 전환용 메서드
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        // Fragment로 사용할 MainActivity내의 layout공간을 선택
+        fragmentTransaction.replace(R.id.main_frame, fragment).commit();
     }
 }

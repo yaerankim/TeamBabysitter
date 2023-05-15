@@ -8,7 +8,7 @@ import java.sql.Date;
 public class Community_model {
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private int id;
 
     @SerializedName("title")
     @Expose
@@ -20,18 +20,27 @@ public class Community_model {
 
     @SerializedName("view_count")
     @Expose
-    private Integer view_count;
+    private int view_count;
 
     @SerializedName("created_at")
     @Expose
     private Date created_at; // java.sql.Date -> yyyy-mm-dd 형식이어야 함
+
+    @SerializedName("row_count")
+    @Expose
+    private int row_count;
 
     public Community_model(String title, String content){
         this.title = title;
         this.content = content;
     }
 
-    public Integer getId(){
+//    public Community_model getCommunityObject(int id) {
+//        this.getClass();
+//        return this;
+//    }
+
+    public int getId(){
         return id;
     }
 
@@ -39,7 +48,24 @@ public class Community_model {
         return title;
     }
 
+    // ?
+//    public String getTitleById(int id){
+//        return title;
+//    }
+
     public String getContent(){
         return content;
+    }
+
+    public int getViewCount(){
+        return view_count;
+    }
+
+    public Date getCreatedAt(){
+        return created_at;
+    }
+
+    public int getRowCount(){
+        return row_count;
     }
 }
