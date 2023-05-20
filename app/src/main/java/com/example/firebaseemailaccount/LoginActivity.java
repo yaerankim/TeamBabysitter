@@ -24,10 +24,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class LoginActivity extends AppCompatActivity {
-    private FirebaseAuth mFirebaseAuth;   //파이어베이스 인증처리하는 부분
-    private DatabaseReference mDatabaseRef; //실시간 데이터베이스
-    private EditText mEtEmail, mEtPwd; //로그인 입력필드
+    Call<UserAccount> call;
+    private EditText et_email, et_pwd; //로그인 입력필드
+    private Button btn_login; // 로그인 버튼
 
 
     @Override
@@ -35,28 +39,49 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-            mFirebaseAuth = FirebaseAuth.getInstance();
-            mDatabaseRef = FirebaseDatabase.getInstance().getReference("GoingBaby");
 
-            mEtEmail = findViewById(R.id.et_email);
-            mEtPwd = findViewById(R.id.et_pwd);
+            et_email = findViewById(R.id.et_email);
+            et_pwd = findViewById(R.id.et_pwd);
+            btn_login = findViewById(R.id.btn_login);
 
-            Button btn_login = findViewById(R.id.btn_login);
-            btn_login.setOnClickListener(view -> {
-                String strEmail = mEtEmail.getText().toString();
-                String strPwd = mEtPwd.getText().toString();
-                mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Intent intent = new Intent(LoginActivity.this, PageActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+            btn_login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UserAccount user = new UserAccount(et_email.getText().toString(), et_pwd.getText().toString());
+                    call = Retrofit_client.getUserApiService().user_login(user);
+
+                    call.enqueue(new Callback<UserAccount>() {
+                        //콜백 받는 부분
+                        @Override
+                        public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
+                            if(response.isSuccessful()){
+                                Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(LoginActivity.this, PageActivity.class);
+                                startActivity(intent); // 화면 전환
+                                finish();
+                            }else{
+                                Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<UserAccount> call, Throwable t) {
+                            Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+
+//                mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            Intent intent = new Intent(LoginActivity.this, PageActivity.class);
+//                            startActivity(intent);
+//                            finish();
+//                        } else {
+//                            Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
             });
 
             Button btn_register = findViewById(R.id.btn_register);

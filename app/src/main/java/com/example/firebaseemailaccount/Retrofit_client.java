@@ -7,10 +7,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retrofit_client {
-    private static final String BASE_URL = "https://3ef3-223-194-128-179.ngrok-free.app/";
+    private static final String BASE_URL = "https://fc15-221-147-44-6.ngrok-free.app/";
 
 
     public static CommunityInterface getApiService(){return getInstance().create(CommunityInterface.class);}
+
+    public static UserInterface getUserApiService(){return getInstance().create(UserInterface.class);}
 
     private static Retrofit getInstance(){
         Gson gson = new GsonBuilder().setLenient().create();
