@@ -1,8 +1,5 @@
-<!--<resources>-->
-<!--    <string name="app_name">FirebaseEmailAccount</string>-->
-<!--</resources>-->
 <resources>
-    <string name="app_name">FirebaseEmailAccount</string>
+    <string name="app_name">GoingBaby</string> <!--이름 변경-->
 
     <string-array name="header_title">
         <item></item>

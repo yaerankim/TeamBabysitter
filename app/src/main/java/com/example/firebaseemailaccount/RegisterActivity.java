@@ -41,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
                         // Community_model result = response.body();
                         if(response.isSuccessful()){
-                            Toast.makeText(RegisterActivity.this, "회원가입 설공", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_LONG).show();
                         }else{
                             Toast.makeText(RegisterActivity.this, "회원가입 실패", Toast.LENGTH_LONG).show();
                         }

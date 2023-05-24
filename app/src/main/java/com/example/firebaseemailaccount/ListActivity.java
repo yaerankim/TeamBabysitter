@@ -77,7 +77,7 @@ public class ListActivity extends Fragment {
         // for(i=1;i<=adapter.getCount();i++) { // addItem() 이후에 저장된 데이터들에 대한 개수를 반환해주기 때문에 이 위치에서 제대로 동작X
         // 일단은 게시물 목록 중 특정 개수만 list up
         // for(i=1;i<=result.getRowCount();i++) {
-        for(i=1;i<=25;i++) {
+        for(i=1;i<=4;i++) {
             call = Retrofit_client.getApiService().community_detail_get(i);
             call.enqueue(new Callback<Community_model>() {
                 @Override
