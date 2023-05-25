@@ -52,11 +52,13 @@ public class CommunityActivity extends Fragment {
             Community_model post = new Community_model(title_et.getText().toString(), content_et.getText().toString());
             call = Retrofit_client.getApiService().community_post(post);
             // post_id = post.getId(); // post 직후 해당 데이터의 id값을 가져올 방법이 없음
+
+            // enqueue 호출 부분까진 동기
             call.enqueue(new Callback<Community_model>() {
                 //콜백 받는 부분
                 @Override
                 public void onResponse(Call<Community_model> call, Response<Community_model> response) {
-                    // Community_model result = response.body();
+                    // Community_model result = response.body(); // response 값 받아오는 건 비동기 콜백
                     if(response.isSuccessful()){
                         Toast.makeText(getContext(), "Saved successfully", Toast.LENGTH_LONG).show();
                     }else{
